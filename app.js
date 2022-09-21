@@ -1,9 +1,10 @@
 const express = require("express");
 const fs = require("fs");
+const morgan = require("morgan");
 
 app = express();
-// app.use(morgan("dev"));
-// app.use(express.json());
+app.use(morgan("dev"));
+app.use(express.json());
 
 // ***********************
 // const food = fs.readFile("./food.json", (err, data) => {
@@ -15,7 +16,6 @@ app = express();
 // });
 
 const foodRoute = require("./routes/food.routes");
-console.log("Jerry");
 app.use("/api/vi/", foodRoute);
 
 // require("./controllers/foodntroller");
