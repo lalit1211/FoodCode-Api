@@ -6,6 +6,32 @@ app = express();
 app.use(morgan("dev"));
 app.use(express.json());
 
+
+
+
+// ```````````````````
+// const array = [2, 5, 9];
+// const a = [
+// 	{'id':1},
+// 	{'id':2},
+// 	{'id':3}
+// ]
+
+// console.log(a);
+
+// const index = a.findIndex((el)=>{
+// 	return el.id==3
+// });
+// console.log(index)
+// a.splice(index)
+// console.log(a)
+ 	// only splice array when item is found
+	// array.splice(index, 1); // 2nd parameter means remove one item only
+
+
+// array = [2, 9]
+// console.log(array); 
+
 // ***********************
 // const food = fs.readFile("./food.json", (err, data) => {
 // 	if (err) {

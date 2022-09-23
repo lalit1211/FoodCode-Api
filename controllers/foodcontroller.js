@@ -59,7 +59,6 @@ const addRecipe = (req, res) => {
 		calories,
 		image,
 	};
-	// console.log(newF);
 
 	// Storing the JSON format data in myObject
 	var data = fs.readFileSync("./food.json");
@@ -81,8 +80,48 @@ const addRecipe = (req, res) => {
 };
 
 // ******************** End Add a recipe......................
+// ******************** Delete a recipe......................
+const deleteRecipe = (req, res) => {
+	const { id } = req.params;
 
+	var data = fs.readFileSync("./food.json");
+	var myObject = JSON.parse(data);
+	console.log(myObject);
+	const index = myObject.findIndex((obj) => {
+		return obj.id == id;
+	});
+
+	if (index == -1) {
+		console.log("negative");
+		res.status(400).json({
+			message: "Please provide correct information",
+			status: "error",
+		});
+	} else {
+		const sliced = myObject.splice(index, 1);
+		var newData2 = JSON.stringify(myObject);
+		fs.writeFile(
+			"./food.json",
+			newData2,
+			(err, data) => {
+				console.log(err);
+			},
+		);
+
+		res.status(200).json({
+			status: "Item deleted successfully!",
+			data: myObject,
+		});
+	}
+};
+// ******************** End Delete a recipe......................
+// ******************** Update a recipe......................
+const updateRecipe = (req, res) => {};
+// ******************** End Update a recipe......................
+
+// ******************** Modules exported .....................
 module.exports = {
 	getRecipe,
 	addRecipe,
+	deleteRecipe,
 };
